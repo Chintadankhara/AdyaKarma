@@ -33,7 +33,6 @@ function App() {
       {isDark ? 'Light' : 'Dark'} 
        </button> */}
 
-      <Navbar />
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/about' element={<About />} />

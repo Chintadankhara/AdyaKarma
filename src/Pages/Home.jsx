@@ -5,12 +5,13 @@ import { FaArrowRight, FaComputer } from "react-icons/fa6";
 import { RiWomenFill } from "react-icons/ri";
 import { WiHot } from "react-icons/wi";
 import { BiArrowFromLeft, BiMath } from "react-icons/bi";
+import Navbar from "../Components/Navbar";
 
 const Home = () => {
  
-
   return (
     <>
+    <Navbar />
       <section className='container mt-2 '>
         <header className="text-center">
           <div className="grid grid-cols-1">

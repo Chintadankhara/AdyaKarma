@@ -6,6 +6,7 @@ import { useRef, useState } from 'react'
 import { NavLink } from 'react-router-dom';
 import { useContext } from 'react';
 import { AuthContext } from '../assets/AuthProvider';
+import Navbar from './Navbar';
 
 const SignIn = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -58,7 +59,7 @@ const SignIn = () => {
 
   return (
     <>
-
+<Navbar />
       <section className='container mt-5'>
 
         <div className='flex flex-col w-75  text-center rounded m-auto border pl-3 pr-3 pt-5 pb-5'>

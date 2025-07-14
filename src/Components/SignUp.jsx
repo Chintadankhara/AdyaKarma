@@ -1,5 +1,6 @@
 import React, { useRef, useState } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
+import Navbar from './Navbar';
 
 const SignUp = () => {
   const firstNameRef = useRef();
