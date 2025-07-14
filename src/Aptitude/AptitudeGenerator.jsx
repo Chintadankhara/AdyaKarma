@@ -1,11 +1,44 @@
 import React, { useState } from 'react';
 
 const topics = [
+  // Maths
+  'HCM & LCM',
+  'Averages',
   'Ages',
-  'Average',
-  'BoatStreams',
-  'Hcmlcm',
-  // Add more topics as needed
+  'Boat & Streams',
+  'Trains',
+  'Pipes & Cisterns',
+  'Time & Work',
+  'Percentage',
+  'Ratio & Proportion',
+  'Chain-Rule',
+  'Mixture & Alligation',
+  'Discount',
+  'Profit & Loss',
+  'Simple-Interest',
+  'Compound-Interest',
+  'Probability',
+  'Permutation & Combination',
+  'Geometric-Progression',
+  'Arithmetic-Progression',
+  // Data Interpretation
+  'Bar-Graph',
+  'Pie-Chart',
+  'Line-Graph',
+  // Logical Reasoning
+  'Direction',
+  'Blood-Relations',
+  'Seating-Arrangement',
+  'Clock',
+  'Statement & Conclusion',
+  'Statement & Arguments',
+  'Statement & Assumptions',
+  'Statement & Course of Action',
+  'Cause & Effect',
+  'Coding-Decoding',
+  'Series',
+  'Syllogism',
+  'Calendar',
 ];
 
 const levels = ['Easy', 'Medium', 'Hard'];
@@ -63,7 +96,7 @@ const AptitudeGenerator = () => {
   const safeQuestions = Array.isArray(questions) ? questions : [];
 
   return (
-    <div className="max-w-2xl mx-auto p-2 sm:p-4 w-full relative">
+    <div className="container mt-2 ">
       <h2 className="text-2xl sm:text-3xl font-bold mb-4 text-center">Generate Aptitude Questions</h2>
       <form onSubmit={handleSubmit} className="mb-6 flex flex-col sm:flex-row sm:items-end gap-4 w-full">
         <div className="flex-1 flex flex-col">

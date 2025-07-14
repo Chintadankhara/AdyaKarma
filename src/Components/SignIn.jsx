@@ -14,6 +14,7 @@ const SignIn = () => {
   const getMessage = useRef();
   const [isTransition, setTransition] = useTransition();
   const toHome = useNavigate();
+  const { setAuth } = useContext(AuthContext);
 
   const handleReveal = () => {
     if (showPassword) {
@@ -42,10 +43,9 @@ const SignIn = () => {
         if (data.success) {
           const token = data.data.token;
           const expires = new Date(Date.now() + 10 * 24 * 60 * 60 * 1000).toUTCString();
-          document.cookie = `auth=${token}; expires=${expires} `;
-          toHome("/");
-          const { setAuth } = useContext(AuthContext);
-          setAuth({ isAuthenticated: true, loading: false })
+        document.cookie = `auth=${token}; expires=${expires} `;
+        setTimeout(() => toHome('/'), 1500);
+          setAuth({ isAuthenticated: true, loading: false });
         } else {
           getMessage.current.innerHTML = '<span style="color: red">' + data.error + " !" + '</span>';
         }
