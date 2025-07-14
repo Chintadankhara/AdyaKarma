@@ -35,7 +35,7 @@ const Navbar = () => {
       try {
         isSetCalling(async () => {
           const getToken = document.cookie.split("=")[1];
-          const res = await fetch("https://adyakarmabackend.onrender.com/auth/signin/tokencheck", {
+          const res = await fetch("https://adyakarmabackend.onrender.com/auth/tokencheck", {
             method: "POST",
             headers: {
               "Content-Type": "application/json"
@@ -62,7 +62,7 @@ const Navbar = () => {
   // Sign out handler
   const handleSignOut = () => {
     // Clear the auth cookie (set expiry in the past)
-    document.cookie = "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+    document.cookie = "auth=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
     setTokenValid(false);
     setOpen(false); // Close mobile menu if open
   };
