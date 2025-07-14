@@ -1,0 +1,128 @@
+@import "tailwindcss";
+
+* {
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+body {
+  background-color: rgb(255, 255, 255);
+}
+
+.container,
+.container-fluid,
+.container-xxl,
+.container-xl,
+.container-lg,
+.container-md,
+.container-sm {
+  --bs-gutter-x: 1.5rem;
+  --bs-gutter-y: 0;
+  width: 100%;
+  padding-right: calc(var(--bs-gutter-x) * 0.5);
+  padding-left: calc(var(--bs-gutter-x) * 0.5);
+  margin-right: auto;
+  margin-left: auto;
+}
+
+@media (min-width: 576px) {
+  .container-sm,
+  .container {
+    max-width: 540px;
+  }
+}
+@media (min-width: 768px) {
+  .container-md,
+  .container-sm,
+  .container {
+    max-width: 720px;
+  }
+}
+@media (min-width: 992px) {
+  .container-lg,
+  .container-md,
+  .container-sm,
+  .container {
+    max-width: 960px;
+  }
+}
+@media (min-width: 1200px) {
+  .container-xl,
+  .container-lg,
+  .container-md,
+  .container-sm,
+  .container {
+    max-width: 1140px;
+  }
+}
+@media (min-width: 1400px) {
+  .container-xxl,
+  .container-xl,
+  .container-lg,
+  .container-md,
+  .container-sm,
+  .container {
+    max-width: 1320px;
+  }
+}
+:root {
+  --bs-breakpoint-xs: 0;
+  --bs-breakpoint-sm: 576px;
+  --bs-breakpoint-md: 768px;
+  --bs-breakpoint-lg: 992px;
+  --bs-breakpoint-xl: 1200px;
+  --bs-breakpoint-xxl: 1400px;
+}
+
+.menubar {
+  width: 30px;
+  height: 25px;
+}
+
+.menubar > .firstline {
+  width: 30px;
+  height: 5px;
+  border-radius: 15px;
+  background-color: black;
+}
+.menubar > .secondline {
+  width: 15px;
+  height: 5px;
+  border-radius: 15px;
+  background-color: black;
+  margin-top: 3px;
+}
+
+.closemenu > .firstline {
+  width: 30px;
+  height: 5px;
+  border-radius: 15px;
+  background-color: black;
+}
+
+.closemenu > .secondline {
+  width: 15px;
+  height: 5px;
+  border-radius: 15px;
+  background-color: black;
+  margin-top: 3px;
+  margin-left: 14px;
+}
+
+.aptitudebar > .line {
+  width: 25px;
+  height: 4px;
+  border-radius: 15px;
+  background-color: black;
+}
+
+.aptitudeitem > .active{
+  font-weight: bolder;
+  border-bottom: 2px solid black;
+}
+
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
