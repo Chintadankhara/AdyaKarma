@@ -1,26 +1,34 @@
-import React from "react";
+import React, { useContext, useRef } from "react";
 import Footer from "../Components/Footer";
-import { NavLink } from "react-router-dom";
-import { FaArrowRight, FaComputer } from "react-icons/fa6";
-import { RiWomenFill } from "react-icons/ri";
-import { WiHot } from "react-icons/wi";
-import { BiArrowFromLeft, BiMath } from "react-icons/bi";
-import Navbar from "../Components/Navbar";
+import { NavLink, useNavigate } from "react-router-dom";
+import { AppContext } from '../assets/AppContext';
 
 const Home = () => {
- 
+
+  const { isLogin} = useContext(AppContext);
+  const toNavigate= useNavigate();
+
+  const handleStart = (e) => {
+           e.preventDefault();
+           if(!isLogin){
+                toNavigate("/signin")
+           }else {
+              toNavigate("quickstart");
+           }
+  }
+
   return (
     <>
-    <Navbar />
-      <section className='container mt-2 '>
+
+      <section className='container mt-2'>
         <header className="text-center">
           <div className="grid grid-cols-1">
 
-            <p className="lg:text-5xl md:text-4xl text-3xl  font-bold mb-5">
-              "Learn faster with smart shortcuts, master aptitude with formulas, practice AI-generated questions, and interviews"
+            <p className="lg:text-5xl md:text-4xl text-3xl font-bold mb-5">
+              "Learn faster with smart shortcuts, master aptitude with formulas, practice AI-generated questions"
             </p>
 
-            <NavLink to={'/quickstart'} className="cursor-pointer bg-blue-800 hover:bg-blue-900 pt-2 pb-2 shadow-md shadow-gray-400 text-2xl pl-3 justify-self-center md:w-100 w-full pr-3 rounded" style={{ color: "white" }}>
+            <NavLink onClick={handleStart} className="justify-self-center bg-gradient-to-r from-blue-500 to-blue-700 px-6 py-3 rounded-lg shadow lg:w-100 hover:from-blue-600 hover:to-blue-800 font-semibold md:w-full w-full  text-lg transition-all duration-200 text-center" style={{ color: "white" }}>
               <span>Start Now</span>
             </NavLink>
 

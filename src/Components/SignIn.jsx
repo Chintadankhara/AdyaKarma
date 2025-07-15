@@ -2,20 +2,18 @@ import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useTransition } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useRef, useState } from 'react'
+import { useRef, useState, useContext } from 'react'
 import { NavLink } from 'react-router-dom';
-import { useContext } from 'react';
-import { AuthContext } from '../assets/AuthProvider';
-import Navbar from './Navbar';
+import { AppContext } from '../assets/AppContext';
 
 const SignIn = () => {
+  const { setLogin } = useContext(AppContext);
   const [showPassword, setShowPassword] = useState(false);
   const emailRef = useRef();
   const passwordRef = useRef();
   const getMessage = useRef();
   const [isTransition, setTransition] = useTransition();
   const toHome = useNavigate();
-  const { setAuth } = useContext(AuthContext);
 
   const handleReveal = () => {
     if (showPassword) {
@@ -44,9 +42,9 @@ const SignIn = () => {
         if (data.success) {
           const token = data.data.token;
           const expires = new Date(Date.now() + 10 * 24 * 60 * 60 * 1000).toUTCString();
-        document.cookie = `auth=${token}; expires=${expires} `;
-        setTimeout(() => toHome('/'), 1500);
-          setAuth({ isAuthenticated: true, loading: false });
+          document.cookie = `auth=${token}; expires=${expires} `;
+          setTimeout(() => toHome('/quickstart'), 1000);
+          setLogin(true);
         } else {
           getMessage.current.innerHTML = '<span style="color: red">' + data.error + " !" + '</span>';
         }
@@ -59,7 +57,6 @@ const SignIn = () => {
 
   return (
     <>
-<Navbar />
       <section className='container mt-5'>
 
         <div className='flex flex-col w-75  text-center rounded m-auto border pl-3 pr-3 pt-5 pb-5'>
@@ -81,7 +78,7 @@ const SignIn = () => {
           <span className='w-full h-2' ref={getMessage}></span>
 
 
-          <button onClick={handleSignIn} type='submit' className='mt-6 bg-blue-800 rounded h-10 text-white text-xl cursor-pointer hover:bg-blue-900 shadow-md shadow-gray-500'>{isTransition ? <><div className='border-b-3 border-t-3 border-blue-600 animate-spin  rounded-full w-8 h-8 flex m-auto'></div></> : "Sign-In"}</button>
+          <button onClick={handleSignIn} style={{color:"white"}} type='submit' className='bg-gradient-to-r from-blue-500 to-blue-700 pt-1 pb-1 pl-3 pr-3 rounded shadow  hover:from-blue-600 hover:to-blue-800 font-semibold text-lg transition-all duration-200 text-center'>{isTransition ? <><div className='border-b-3 border-t-3 border-blue-600 animate-spin  rounded-full w-8 h-8 flex m-auto'></div></> : "Sign-In"}</button>
         </div>
 
 

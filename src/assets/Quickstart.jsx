@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import { NavLink, Outlet } from 'react-router-dom';
+import { AppContext } from './AppContext';
 
 const Quickstart = () => {
     const [isOpen, setOpen] = useState(true);
+
 
     const hadnleOpen = () => {
         setOpen(true);
@@ -75,10 +77,10 @@ const Quickstart = () => {
                     </button>
                     <div className="max-w-2xl mx-auto bg-white/90 rounded-xl shadow-lg p-8 flex flex-col items-center mb-8">
                         <h1 className="text-3xl font-bold text-blue-700 mb-2 text-center">Sharpen Your Mind. Ace Every Formula And Shortcut.</h1>
-                        <h2 className="text-lg text-blue-500 mb-4 text-center">Where Preparation Meets Perfection</h2>
+                        <h2 className="text-lg text-black mb-4 text-center">Where Preparation Meets Perfection</h2>
                         <NavLink
                             to="/generate-questions"
-                            className="inline-block bg-gradient-to-r from-blue-500 to-blue-700 text-white px-6 py-3 rounded-lg shadow hover:from-blue-600 hover:to-blue-800 font-semibold text-lg transition-all duration-200 text-center"
+                            className="inline-block bg-gradient-to-r from-blue-500 to-blue-700  px-6 py-3 rounded-lg shadow hover:from-blue-600 hover:to-blue-800 font-semibold text-lg transition-all duration-200 text-center" style={{ color: "white" }}
                         >
                             Generate Aptitude Questions
                         </NavLink>

@@ -78,7 +78,7 @@ const SignUp = () => {
 
           <label htmlFor="" className='mt-5'>
             <NavLink to={''}>Already User ?</NavLink>
-            <NavLink to={'/signin'} className='ml-4'>sign-In</NavLink>
+            <NavLink to={'/signin'} className='ml-29'>sign-In</NavLink>
           </label>
 
           <span className='w-full h-2' ref={getMessage}></span>
@@ -90,7 +90,7 @@ const SignUp = () => {
             disabled={isLoading}
           >
             {isLoading ? (
-              <div className='border-b-3 border-t-3 border-blue-600 animate-spin rounded-full w-8 h-8'></div>
+              <div className='bg-gradient-to-r from-blue-500 to-blue-700 pt-1 pb-1 pl-3 pr-3 rounded shadow  hover:from-blue-600 hover:to-blue-800 font-semibold text-lg transition-all duration-200 text-center'></div>
             ) : (
               'Sign-Up'
             )}
