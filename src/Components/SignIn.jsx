@@ -1,20 +1,23 @@
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { useTransition } from 'react';
+import { useTransition ,useEffect} from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useRef, useState, useContext } from 'react'
 import { NavLink } from 'react-router-dom';
 import { AppContext } from '../assets/AppContext';
+import ToastMessage from '../assets/ToastMessage';
 
 const SignIn = () => {
-  const { setLogin } = useContext(AppContext);
+  const { isLogin,setLogin } = useContext(AppContext);
   const [showPassword, setShowPassword] = useState(false);
   const emailRef = useRef();
   const passwordRef = useRef();
   const getMessage = useRef();
   const [isTransition, setTransition] = useTransition();
   const toHome = useNavigate();
-  
+  const [showToast, setShowToast] = useState(false);
+
+
   const handleReveal = () => {
     if (showPassword) {
       setShowPassword(false);
@@ -22,7 +25,7 @@ const SignIn = () => {
     if (!showPassword) {
       setShowPassword(true);
     }
-  }  
+  }
 
 
   const handleSignIn = () => {
@@ -61,13 +64,26 @@ const SignIn = () => {
       console.log(error);
     }
   }
-       
+
+  useEffect(() => {
+    if (isLogin) {
+      setShowToast(true);
+      const timer = setTimeout(() => {
+        setShowToast(false);
+      }, 2000);
+      return () => clearTimeout(timer);
+    }
+  }, [isLogin])
+
+
 
   return (
     <>
+
+      {showToast && <ToastMessage message="Sign in successfullly" type="success" />
+      }
+
       <section className='container mt-5'>
-
-
 
         <div className='flex flex-col w-75  text-center rounded m-auto border pl-3 pr-3 pt-5 pb-5'>
           <h1 className='text-2xl font-bold'>Sign-In</h1>

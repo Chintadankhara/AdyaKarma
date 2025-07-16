@@ -2,8 +2,6 @@ import { useState, useEffect, useTransition, useContext } from 'react'
 import { NavLink, useNavigate } from 'react-router-dom'
 import { useMediaQuery } from 'react-responsive'
 import { AppContext } from '../assets/AppContext';
-import ToastMessage from '../assets/ToastMessage';
-
 
 const Navbar = () => {
 
@@ -11,7 +9,6 @@ const Navbar = () => {
   const [isCalling, isSetCalling] = useTransition();
   const [isTokenValid, setTokenValid] = useState(false);
   const { isLogin, setLogin } = useContext(AppContext);
-  const [showToast, setShowToast] = useState(false);
 
   const isMobile = useMediaQuery({ query: "(max-width: 768px)" });
   const [isOpen, setOpen] = useState(false);
@@ -76,23 +73,12 @@ const Navbar = () => {
     toHome("/");
   };
 
-  useEffect(() => {
-    if (isLogin) {
-      setShowToast(true);
-      const timer = setTimeout(() => {
-        setShowToast(false);
-      }, 2000);
-      return () => clearTimeout(timer);
-    }
-  }, [isLogin])
 
 
   return (
     <>
 
-      {showToast && <ToastMessage message="Sign in successfullly" type="success" />
-      }
-
+      
       {isCalling ? <>
         <span className='flex h-13 bg-gray-50 shadow w-full animate-pulse'></span>
       </> : <>
