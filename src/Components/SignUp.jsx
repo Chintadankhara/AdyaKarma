@@ -1,6 +1,8 @@
 import React, { useRef, useState } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
 import Navbar from './Navbar';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 
 const SignUp = () => {
   const firstNameRef = useRef();
@@ -10,24 +12,52 @@ const SignUp = () => {
   const rePasswordRef = useRef();
   const getMessage = useRef();
   const [isLoading, setIsLoading] = useState(false);
+  const [showPassword1, setShowPassword1] = useState(false);
+  const [showPassword2, setShowPassword2] = useState(false);
+
   const toHome = useNavigate();
 
+
+  const handleReveal1 = ()=>{
+        if(showPassword1){
+          setShowPassword1(false);
+        }else {
+          setShowPassword1(true);
+        }
+  }
+
+  const handleReveal2 = ()=>{
+    if(showPassword2){
+      setShowPassword2(false);
+    }else {
+      setShowPassword2(true);
+    }
+}
+
   const handleSignUp = async () => {
+
     getMessage.current.innerHTML = '';
     const firstName = firstNameRef.current.value.trim();
+
     const lastName = lastNameRef.current.value.trim();
     const email = emailRef.current.value.trim();
     const password = passwordRef.current.value;
     const rePassword = rePasswordRef.current.value;
 
-    if (!firstName || !lastName || !email || !password || !rePassword) {
-      getMessage.current.innerHTML = '<span style="color: red">All fields are required!</span>';
+    const validemail = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    const validpass = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&]).{8,}$/;
+
+    if ((firstName && lastName && email && password && rePassword) == "") {
+      getMessage.current.innerHTML = "<span style='color:red'>Please fill required field !</span>"
+      return;
+    } else if (!validemail.test(email) || !validpass.test(password)) {
+      getMessage.current.innerHTML = "<span style='color:red'>Please enter valid email or password !</span>"
+      return;
+    } else if (password != rePassword) {
+      getMessage.current.innerHTML = "<span style='color:red'>Password can't match </span>"
       return;
     }
-    if (password !== rePassword) {
-      getMessage.current.innerHTML = '<span style="color: red">Passwords do not match!</span>';
-      return;
-    }
+
     setIsLoading(true);
     try {
       const res = await fetch('https://adyakarmabackend.onrender.com/auth/signup', {
@@ -69,11 +99,13 @@ const SignUp = () => {
           </label>
 
           <label htmlFor="">
-            <input ref={passwordRef} type="password" placeholder='Password' className='pl-3 border outline-0 w-full h-10 mt-5 rounded' />
+            <input ref={passwordRef} type={showPassword1? "text":"password"} placeholder='Password' className='pl-3 border outline-0 w-full h-10 mt-5 rounded' />
+            <div><FontAwesomeIcon className='relative left-29 bottom-8 cursor-pointer' onClick={handleReveal1} icon={showPassword1 ? faEyeSlash : faEye} /></div>
           </label>
 
           <label htmlFor="">
-            <input ref={rePasswordRef} type="password" placeholder='Re-Enter Password' className='pl-3 border outline-0 w-full h-10 mt-5 rounded' />
+            <input ref={rePasswordRef} type={showPassword2? "text":"password"} placeholder='Re-Enter Password' className='pl-3 border outline-0 w-full h-10 rounded' />
+            <div><FontAwesomeIcon className='relative left-29 bottom-8 cursor-pointer' onClick={handleReveal2} icon={showPassword2 ? faEyeSlash : faEye} /></div>
           </label>
 
           <label htmlFor="" className='mt-5'>
@@ -85,12 +117,12 @@ const SignUp = () => {
 
           <button
             onClick={handleSignUp}
-            type='button'
-            className='mt-6 bg-blue-800 rounded h-10 text-white text-xl cursor-pointer hover:bg-blue-900 shadow-md shadow-gray-500 flex items-center justify-center'
+            type='button' style={{ color: "white" }}
+            className='cursor-pointer bg-gradient-to-r from-blue-500 to-blue-700 h-10 mt-5 rounded shadow  hover:from-blue-600 hover:to-blue-800 font-semibold text-lg transition-all duration-200 text-center'
             disabled={isLoading}
           >
             {isLoading ? (
-              <div className='bg-gradient-to-r from-blue-500 to-blue-700 pt-1 pb-1 pl-3 pr-3 rounded shadow  hover:from-blue-600 hover:to-blue-800 font-semibold text-lg transition-all duration-200 text-center'></div>
+              <div className='animate-pulse h-10 bg-blue-300 rounded w-full'></div>
             ) : (
               'Sign-Up'
             )}

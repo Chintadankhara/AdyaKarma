@@ -51,6 +51,7 @@ const Navbar = () => {
           const data = await res.json();
           if (data.success) {
             setTokenValid(true);
+            setLogin(true);
           } else {
             setTokenValid(false)
           }
@@ -61,7 +62,7 @@ const Navbar = () => {
       }
     }
     apiCallForJWTCheck();
-  }, [isTokenValid, isLogin]);
+  }, [setTokenValid, isLogin, setLogin]);
 
   // Sign out handler
   const handleSignOut = () => {
@@ -157,7 +158,7 @@ const Navbar = () => {
                 ) : (
                   <>
                     <NavLink onClick={removeSmallCanvas} to={'/signin'} className='bg-gradient-to-r from-blue-500 to-blue-700 pt-1 pb-1 pl-3 pr-3 rounded-lg shadow  hover:from-blue-600 hover:to-blue-800 font-semibold text-lg transition-all duration-200 text-center' style={{ color: "white" }}>Sign-In</NavLink>
-                    <NavLink onClick={removeSmallCanvas}  to={'/signup'} className='bg-gradient-to-r from-blue-500 to-blue-700 pt-1 pb-1 pl-3 pr-3 rounded-lg shadow  hover:from-blue-600 hover:to-blue-800 font-semibold text-lg transition-all duration-200 text-center mt-2' style={{ color: "white" }}>Sign-Up</NavLink>
+                    <NavLink onClick={removeSmallCanvas} to={'/signup'} className='bg-gradient-to-r from-blue-500 to-blue-700 pt-1 pb-1 pl-3 pr-3 rounded-lg shadow  hover:from-blue-600 hover:to-blue-800 font-semibold text-lg transition-all duration-200 text-center mt-2' style={{ color: "white" }}>Sign-Up</NavLink>
                   </>
                 )}
 

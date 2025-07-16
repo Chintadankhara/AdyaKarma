@@ -26,6 +26,9 @@ const SignIn = () => {
 
   const handleSignIn = () => {
     try {
+      if(emailRef.current.value=="" || passwordRef.current.value==""){
+        getMessage.current.innerHTML = '<span style="color: red">'+'All fields are required!!'+ '</span>';
+      } else {
       setTransition(async () => {
         getMessage.current.innerHTML = "";
         const res = await fetch("https://adyakarmabackend.onrender.com/auth/signin", {
@@ -40,16 +43,19 @@ const SignIn = () => {
         });
         const data = await res.json();
         if (data.success) {
+          setLogin(true);
           const token = data.data.token;
           const expires = new Date(Date.now() + 10 * 24 * 60 * 60 * 1000).toUTCString();
           document.cookie = `auth=${token}; expires=${expires} `;
           setTimeout(() => toHome('/quickstart'), 1000);
-          setLogin(true);
+         
         } else {
           getMessage.current.innerHTML = '<span style="color: red">' + data.error + " !" + '</span>';
+          emailRef.current.value="";
+          passwordRef.current.value="";
         }
       })
-
+    }
     } catch (error) {
       console.log(error);
     }
@@ -68,7 +74,7 @@ const SignIn = () => {
 
           <label htmlFor="" className='mt-5'>
             <input ref={passwordRef} type={showPassword ? "text" : "password"} className='pl-3 outline-0 border mt-2 h-10 w-full rounded' placeholder='Password' />
-            <div><FontAwesomeIcon className='relative left-29 bottom-8' onClick={handleReveal} icon={showPassword ? faEyeSlash : faEye} /></div>
+            <div><FontAwesomeIcon className='relative left-29 bottom-8 cursor-pointer' onClick={handleReveal} icon={showPassword ? faEyeSlash : faEye} /></div>
           </label>
 
           <label htmlFor="">
@@ -78,7 +84,7 @@ const SignIn = () => {
           <span className='w-full h-2' ref={getMessage}></span>
 
 
-          <button onClick={handleSignIn} style={{color:"white"}} type='submit' className='bg-gradient-to-r from-blue-500 to-blue-700 pt-1 pb-1 pl-3 pr-3 rounded shadow  hover:from-blue-600 hover:to-blue-800 font-semibold text-lg transition-all duration-200 text-center'>{isTransition ? <><div className='border-b-3 border-t-3 border-blue-600 animate-spin  rounded-full w-8 h-8 flex m-auto'></div></> : "Sign-In"}</button>
+          <button onClick={handleSignIn} style={{color:"white"}} type='submit' className='cursor-pointer bg-gradient-to-r from-blue-500 to-blue-700 h-10 mt-5 rounded shadow  hover:from-blue-600 hover:to-blue-800 font-semibold text-lg transition-all duration-200 text-center'>{isTransition ? <><div className='animate-pulse h-10 bg-blue-300 rounded w-full'></div></> : "Sign-In"}</button>
         </div>
 
 
