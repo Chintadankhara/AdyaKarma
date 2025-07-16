@@ -2,6 +2,7 @@ import { useState, useEffect, useTransition, useContext } from 'react'
 import { NavLink, useNavigate } from 'react-router-dom'
 import { useMediaQuery } from 'react-responsive'
 import { AppContext } from '../assets/AppContext';
+import ToastMessage from '../assets/ToastMessage';
 
 
 const Navbar = () => {
@@ -10,6 +11,7 @@ const Navbar = () => {
   const [isCalling, isSetCalling] = useTransition();
   const [isTokenValid, setTokenValid] = useState(false);
   const { isLogin, setLogin } = useContext(AppContext);
+  const [showToast, setShowToast] = useState(false);
 
   const isMobile = useMediaQuery({ query: "(max-width: 768px)" });
   const [isOpen, setOpen] = useState(false);
@@ -74,9 +76,22 @@ const Navbar = () => {
     toHome("/");
   };
 
+  useEffect(() => {
+    if (isLogin) {
+      setShowToast(true);
+      const timer = setTimeout(() => {
+        setShowToast(false);
+      }, 2000);
+      return () => clearTimeout(timer);
+    }
+  }, [isLogin])
+
 
   return (
     <>
+
+      {showToast && <ToastMessage message="Sign in successfullly" type="success" />
+      }
 
       {isCalling ? <>
         <span className='flex h-13 bg-gray-50 shadow w-full animate-pulse'></span>
@@ -150,14 +165,14 @@ const Navbar = () => {
                 {isTokenValid ? (
                   <button
                     onClick={handleSignOut}
-                    className='rounded bg-blue-600 transition shadow shadow-gray-500 hover:bg-blue-700 pt-1 pb-1 w-full text-center text-xl m-auto mt-3'
+                    className='bg-gradient-to-r from-blue-500 to-blue-700 pt-1 pb-1 pl-3 pr-3 rounded-lg shadow mt-1 hover:from-blue-600 hover:to-blue-800 font-semibold text-lg transition-all duration-200 text-center'
                     style={{ color: "white" }}
                   >
                     Sign Out
                   </button>
                 ) : (
                   <>
-                    <NavLink onClick={removeSmallCanvas} to={'/signin'} className='bg-gradient-to-r from-blue-500 to-blue-700 pt-1 pb-1 pl-3 pr-3 rounded-lg shadow  hover:from-blue-600 hover:to-blue-800 font-semibold text-lg transition-all duration-200 text-center' style={{ color: "white" }}>Sign-In</NavLink>
+                    <NavLink onClick={removeSmallCanvas} to={'/signin'} className='bg-gradient-to-r mt-1 from-blue-500 to-blue-700 pt-1 pb-1 pl-3 pr-3 rounded-lg shadow  hover:from-blue-600 hover:to-blue-800 font-semibold text-lg transition-all duration-200 text-center' style={{ color: "white" }}>Sign-In</NavLink>
                     <NavLink onClick={removeSmallCanvas} to={'/signup'} className='bg-gradient-to-r from-blue-500 to-blue-700 pt-1 pb-1 pl-3 pr-3 rounded-lg shadow  hover:from-blue-600 hover:to-blue-800 font-semibold text-lg transition-all duration-200 text-center mt-2' style={{ color: "white" }}>Sign-Up</NavLink>
                   </>
                 )}
