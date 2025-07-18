@@ -75,98 +75,91 @@ const Navbar = () => {
   return (
     <>
 
-      {/* {isCalling ? <>
-        <span className='flex h-13 bg-gray-50 shadow w-full animate-pulse'></span>
-      </> : <> */}
+      {/* Main Navigation bar in container-fluid */}
+      <div className='container-fluid sticky flex items-center top-0 h-13  shadow w-full bg-blue-50'>
 
-        {/* Main Navigation bar in container-fluid */}
-        <div className='container-fluid sticky flex items-center top-0 h-13  shadow w-full bg-blue-50'>
+        {/* Items of the container inside the container-fluid */}
+        <div className='container'>
+          <div className='grid grid-cols-2'>
+            {/* Logo of the AdyaKarma wit Navigation */}
+            <div className='flex items-center gap-3'>
+              <img src="/logo.jpg" alt="" className='w-10 h-10 rounded-4xl' />
+              <h1 className='font-bold'>AdyaKarma</h1>
+              <NavLink to='/' className='cursor-pointer'>Home</NavLink>
+              {!isMobile ? <>
+                <NavLink to='/about'>About</NavLink>
+              </> : <></>}
+            </div>
 
-          {/* Items of the container inside the container-fluid */}
-          <div className='container'>
-            <div className='grid grid-cols-2'>
-              {/* Logo of the AdyaKarma wit Navigation */}
-              <div className='flex items-center gap-3'>
-                <img src="/logo.jpg" alt="" className='w-10 h-10 rounded-4xl' />
-                <h1 className='font-bold'>AdyaKarma</h1>
-                <NavLink to='/' className='cursor-pointer'>Home</NavLink>
-                {!isMobile ? <>
-                  <NavLink to='/about'>About</NavLink>
-                </> : <></>}
-              </div>
-
-              {/* Login and Sign-Up button */}
-              <div className='justify-end flex items-center'>
-                {!isMobile ?
-                  <>
-                    {isTokenValid ? (
-                      <button
-                        onClick={handleSignOut}
-                        className='bg-gradient-to-r from-blue-500 to-blue-700 pt-1 pb-1 pl-3 pr-3 rounded-lg shadow  hover:from-blue-600 hover:to-blue-800 font-semibold text-lg transition-all duration-200 text-center'
-                        style={{ color: "white" }}
-                      >
-                        Sign-Out
-                      </button>
-                    ) : (
-                      <>
-                        <NavLink to={'/signin'} className='bg-gradient-to-r from-blue-500 to-blue-700 pt-1 pb-1 pl-3 pr-3 rounded-lg shadow  hover:from-blue-600 hover:to-blue-800 font-semibold text-lg transition-all duration-200 text-center' style={{ color: "white" }}>Sign-In</NavLink>
-                        <NavLink to={'signup'} className='bg-gradient-to-r from-blue-500 to-blue-700 pt-1 pb-1 pl-3 pr-3 rounded-lg shadow  hover:from-blue-600 hover:to-blue-800 font-semibold text-lg transition-all duration-200 text-center ml-1' style={{ color: "white" }}>Sign-Up</NavLink>
-                      </>
-                    )}
-                  </> :
-                  <>
-                    {/* Button For open small offcanvas */}
-                    <button onClick={setSmallCanvas} className='menubar cursor-pointer'>
-                      <div className='firstline'></div>
-                      <div className='secondline'></div>
+            {/* Login and Sign-Up button */}
+            <div className='justify-end flex items-center'>
+              {!isMobile ?
+                <>
+                  {isTokenValid ? (
+                    <button
+                      onClick={handleSignOut}
+                      className='bg-gradient-to-r from-blue-500 to-blue-700 pt-1 pb-1 pl-3 pr-3 rounded-lg shadow  hover:from-blue-600 hover:to-blue-800 font-semibold text-lg transition-all duration-200 text-center'
+                      style={{ color: "white" }}
+                    >
+                      Sign-Out
                     </button>
-                  </>
-                }
+                  ) : (
+                    <>
+                      <NavLink to={'/signin'} className='bg-gradient-to-r from-blue-500 to-blue-700 pt-1 pb-1 pl-3 pr-3 rounded-lg shadow  hover:from-blue-600 hover:to-blue-800 font-semibold text-lg transition-all duration-200 text-center' style={{ color: "white" }}>Sign-In</NavLink>
+                      <NavLink to={'signup'} className='bg-gradient-to-r from-blue-500 to-blue-700 pt-1 pb-1 pl-3 pr-3 rounded-lg shadow  hover:from-blue-600 hover:to-blue-800 font-semibold text-lg transition-all duration-200 text-center ml-1' style={{ color: "white" }}>Sign-Up</NavLink>
+                    </>
+                  )}
+                </> :
+                <>
+                  {/* Button For open small offcanvas */}
+                  <button onClick={setSmallCanvas} className='menubar cursor-pointer'>
+                    <div className='firstline'></div>
+                    <div className='secondline'></div>
+                  </button>
+                </>
+              }
 
-              </div>
             </div>
           </div>
-
         </div>
 
-        {isOpen && isMobile ?
-          <>
-            {/* Main Offcanvas */}
-            <div className='ml-auto fixed top-0 p-2  scroll-auto h-full w-55 bg-gray-50 shadow '>
+      </div>
 
-              <div className='flex flex-col'>
+      {isOpen && isMobile ?
+        <>
+          {/* Main Offcanvas */}
+          <div className='ml-auto fixed top-0 p-2  scroll-auto h-full w-55 bg-gray-50 shadow '>
 
-                {/* Button for closing small offcanvas*/}
-                <div className='grid grid-cols-2'>
-                  <h1 className='top-1 relative ml-14 font-bold '>AdyaKarma</h1>
-                  <button onClick={removeSmallCanvas} className='closemenu cursor-pointer relative left-17 top-1'><div className='firstline'></div><div className='secondline'></div></button> <br />
-                </div>
+            <div className='flex flex-col'>
 
-                <NavLink to='/about' onClick={removeSmallCanvas} className='m-auto mt-5' >About</NavLink>
-
-                {isTokenValid ? (
-                  <button
-                    onClick={handleSignOut}
-                    className='bg-gradient-to-r from-blue-500 to-blue-700 pt-1 pb-1 pl-3 pr-3 rounded-lg shadow mt-1 hover:from-blue-600 hover:to-blue-800 font-semibold text-lg transition-all duration-200 text-center'
-                    style={{ color: "white" }}
-                  >
-                    Sign Out
-                  </button>
-                ) : (
-                  <>
-                    <NavLink onClick={removeSmallCanvas} to={'/signin'} className='bg-gradient-to-r mt-1 from-blue-500 to-blue-700 pt-1 pb-1 pl-3 pr-3 rounded-lg shadow  hover:from-blue-600 hover:to-blue-800 font-semibold text-lg transition-all duration-200 text-center' style={{ color: "white" }}>Sign-In</NavLink>
-                    <NavLink onClick={removeSmallCanvas} to={'/signup'} className='bg-gradient-to-r from-blue-500 to-blue-700 pt-1 pb-1 pl-3 pr-3 rounded-lg shadow  hover:from-blue-600 hover:to-blue-800 font-semibold text-lg transition-all duration-200 text-center mt-2' style={{ color: "white" }}>Sign-Up</NavLink>
-                  </>
-                )}
-
+              {/* Button for closing small offcanvas*/}
+              <div className='grid grid-cols-2'>
+                <h1 className='top-1 relative ml-14 font-bold '>AdyaKarma</h1>
+                <button onClick={removeSmallCanvas} className='closemenu cursor-pointer relative left-17 top-1'><div className='firstline'></div><div className='secondline'></div></button> <br />
               </div>
 
-            </div>
-          </> :
-          <></>
-        // }
+              <NavLink to='/about' onClick={removeSmallCanvas} className='m-auto mt-5' >About</NavLink>
 
-      // </>
+              {isTokenValid ? (
+                <button
+                  onClick={handleSignOut}
+                  className='bg-gradient-to-r from-blue-500 to-blue-700 pt-1 pb-1 pl-3 pr-3 rounded-lg shadow mt-1 hover:from-blue-600 hover:to-blue-800 font-semibold text-lg transition-all duration-200 text-center'
+                  style={{ color: "white" }}
+                >
+                  Sign Out
+                </button>
+              ) : (
+                <>
+                  <NavLink onClick={removeSmallCanvas} to={'/signin'} className='bg-gradient-to-r mt-1 from-blue-500 to-blue-700 pt-1 pb-1 pl-3 pr-3 rounded-lg shadow  hover:from-blue-600 hover:to-blue-800 font-semibold text-lg transition-all duration-200 text-center' style={{ color: "white" }}>Sign-In</NavLink>
+                  <NavLink onClick={removeSmallCanvas} to={'/signup'} className='bg-gradient-to-r from-blue-500 to-blue-700 pt-1 pb-1 pl-3 pr-3 rounded-lg shadow  hover:from-blue-600 hover:to-blue-800 font-semibold text-lg transition-all duration-200 text-center mt-2' style={{ color: "white" }}>Sign-Up</NavLink>
+                </>
+              )}
+
+            </div>
+
+          </div>
+        </> :
+        <></>
 
       }
 

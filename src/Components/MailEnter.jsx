@@ -1,18 +1,16 @@
-import { useEffect, useRef } from "react";
+import { useRef } from "react";
 import { NavLink } from "react-router-dom";
 
 const MailEnter = () => {
 
-    const email = useRef();
-    const emailRef = email.current.value
+    const emailRef = useRef();
     const alertref = useRef();
 
     const handlemail = async () => {
 
         const validemail = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+        if (emailRef.current.value == "" || !validemail.test(emailRef.current.value)) {
 
-        if (emailRef == "" || !validemail.test(emailRef)) {
-            console.log(validemail.test(emailRef));
             alertref.current.innerHTML = '<h2>Enter valid email</h2>';
         } else {
             alertref.current.innerHTML = "";
@@ -22,12 +20,13 @@ const MailEnter = () => {
                     "Content-Type": "application/json"
                 },
                 body: JSON.stringify({
-                    "email": emailRef
+                    "email": emailRef.current.value
                 })
             });
+            console.log(res);
 
             const data = await res.json();
-            if (data.success) {
+            if (data) {
                 console.log(data);
             }
         }
@@ -48,14 +47,14 @@ const MailEnter = () => {
                     <p>Enter your mail, we'll send youc otp to reset you password</p>
 
                     <label htmlFor="" className='mt-5 text-center'>
-                        <input type={'mail'} className='pl-3 outline-0 border mt-2 h-10 w-full rounded' placeholder='XYZ@gmail.com' />
+                        <input type={'mail'} ref={emailRef} className='pl-3 outline-0 border mt-2 h-10 w-full rounded' placeholder='XYZ@gmail.com' />
                         <br />
                         <span className="flex justify-center mt-4 text-red-600" ref={alertref}></span>
                     </label>
 
 
 
-                    <button style={{ color: "white" }} ref={emailRef}
+                    <button style={{ color: "white" }}
                         onClick={handlemail}
                         className='cursor-pointer bg-gradient-to-r from-blue-500 to-blue-700 h-10 mt-4 rounded shadow  hover:from-blue-600 hover:to-blue-800 font-semibold text-lg transition-all duration-200 text-center'>Send OTP</button>
                 </div>
