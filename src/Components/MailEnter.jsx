@@ -1,39 +1,43 @@
-import { useRef } from "react";
-import { NavLink } from "react-router-dom";
+import { useRef, useTransition } from "react";
+import { NavLink, useNavigate } from "react-router-dom";
 
 const MailEnter = () => {
 
     const emailRef = useRef();
     const alertref = useRef();
+    const toEnterOTP = useNavigate();
+    const [isPending, setTransition] = useTransition();
 
-    const handlemail = async () => {
+    const handlemail = () => {
 
         const validemail = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
         if (emailRef.current.value == "" || !validemail.test(emailRef.current.value)) {
 
-            alertref.current.innerHTML = '<h2>Enter valid email</h2>';
+            alertref.current.innerHTML = '<h2>Enter valid email !</h2>';
         } else {
             alertref.current.innerHTML = "";
-            const res = await fetch("https://adyakarmabackend.onrender.com/auth/isvalidmail", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify({
-                    "email": emailRef.current.value
-                })
-            });
-            console.log(res);
+            setTransition(async () => {
+                const res = await fetch("https://adyakarmabackend.onrender.com/auth/isvalidmail", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({
+                        "email": emailRef.current.value
+                    })
+                });
 
-            const data = await res.json();
-            if (data) {
-                console.log(data);
-            }
+                const data = await res.json();
+                if (data.success) {
+                    toEnterOTP('/enterotp');
+                } else {
+                    alertref.current.innerHTML = `<h2>${data.error} !</h2>`
+                }
+            })
+
         }
 
     }
-
-
 
 
     return (
@@ -53,10 +57,9 @@ const MailEnter = () => {
                     </label>
 
 
-
                     <button style={{ color: "white" }}
                         onClick={handlemail}
-                        className='cursor-pointer bg-gradient-to-r from-blue-500 to-blue-700 h-10 mt-4 rounded shadow  hover:from-blue-600 hover:to-blue-800 font-semibold text-lg transition-all duration-200 text-center'>Send OTP</button>
+                        className='cursor-pointer bg-gradient-to-r from-blue-500 to-blue-700 h-10 mt-4 rounded shadow  hover:from-blue-600 hover:to-blue-800 font-semibold text-lg transition-all duration-200 text-center'>{isPending ? <><div className='animate-pulse h-10 bg-blue-300 rounded w-full'></div></> : "Sign-In"} Send OTP</button>
                 </div>
 
             </section>
