@@ -108,17 +108,17 @@ const SignUp = () => {
             <div><FontAwesomeIcon className='relative left-29 bottom-8 cursor-pointer' onClick={handleReveal2} icon={showPassword2 ? faEyeSlash : faEye} /></div>
           </label>
 
+          <span className='w-full h-0 mb-3' ref={getMessage}></span>
+
           <label htmlFor="" className='mt-5'>
             <NavLink to={''}>Already User ?</NavLink>
-            <NavLink to={'/signin'} className='ml-29'>sign-In</NavLink>
+            <NavLink to={'/signin'} className='ml-29' style={{color:"blue"}}>Sign-In</NavLink>
           </label>
-
-          <span className='w-full h-2' ref={getMessage}></span>
 
           <button
             onClick={handleSignUp}
             type='button' style={{ color: "white" }}
-            className='cursor-pointer bg-gradient-to-r from-blue-500 to-blue-700 h-10 mt-5 rounded shadow  hover:from-blue-600 hover:to-blue-800 font-semibold text-lg transition-all duration-200 text-center'
+            className='cursor-pointer bg-gradient-to-r from-blue-500 to-blue-700 h-10 mt-4 rounded shadow  hover:from-blue-600 hover:to-blue-800 font-semibold text-lg transition-all duration-200 text-center'
             disabled={isLoading}
           >
             {isLoading ? (

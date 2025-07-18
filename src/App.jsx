@@ -11,6 +11,7 @@ import { BoatStreams } from './Aptitude/Maths/BoatStreams'
 import { Ages } from './Aptitude/Maths/Ages'
 import AptitudeGenerator from './Aptitude/AptitudeGenerator'
 import ContextProvider from './assets/AppContext'
+import MailEnter from './Components/MailEnter'
 
 
 function App() {
@@ -46,11 +47,11 @@ function App() {
             <Route path='ages' element={<Ages />} />
           </Route>
           <Route path='/signin' element={<SignIn />} />
+          <Route path='/mailenter' element={<MailEnter />} />
           <Route path='/signup' element={<SignUp />} />
           <Route path="/generate-questions" element={<AptitudeGenerator />} />
         </Routes>
       </ContextProvider>
-
 
     </>
 

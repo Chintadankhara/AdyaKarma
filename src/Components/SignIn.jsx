@@ -1,14 +1,14 @@
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { useTransition ,useEffect} from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useTransition, useEffect } from 'react';
+import { Outlet, useNavigate } from 'react-router-dom';
 import { useRef, useState, useContext } from 'react'
 import { NavLink } from 'react-router-dom';
 import { AppContext } from '../assets/AppContext';
 import ToastMessage from '../assets/ToastMessage';
 
 const SignIn = () => {
-  const { isLogin,setLogin } = useContext(AppContext);
+  const { isLogin, setLogin } = useContext(AppContext);
   const [showPassword, setShowPassword] = useState(false);
   const emailRef = useRef();
   const passwordRef = useRef();
@@ -70,12 +70,10 @@ const SignIn = () => {
       setShowToast(true);
       const timer = setTimeout(() => {
         setShowToast(false);
-      }, 2000);
+      }, 1000);
       return () => clearTimeout(timer);
     }
   }, [isLogin])
-
-
 
   return (
     <>
@@ -89,7 +87,7 @@ const SignIn = () => {
           <h1 className='text-2xl font-bold'>Sign-In</h1>
 
           <label htmlFor="">
-            <input ref={emailRef} type="text" placeholder='Email' className='pl-3 border outline-0  w-full h-10 mt-5 rounded' />
+            <input ref={emailRef} type="mail" placeholder='Email' className='pl-3 border outline-0  w-full h-10 mt-5 rounded' />
           </label>
 
           <label htmlFor="" className='mt-5'>
@@ -98,8 +96,8 @@ const SignIn = () => {
           </label>
 
           <label htmlFor="">
-            <NavLink to={''}>Forget Password ?</NavLink>
-            <NavLink to={'/signup'} className='ml-21'>sign-Up</NavLink>
+            <NavLink to={'/mailenter'} style={{color:"blue"}}>Forget Password ?</NavLink>
+            <NavLink to={'/signup'} className='ml-21' style={{color:"blue"}}>sign-Up</NavLink>
           </label>
           <span className='w-full h-2' ref={getMessage}></span>
 
