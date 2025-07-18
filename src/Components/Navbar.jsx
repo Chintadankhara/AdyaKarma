@@ -27,7 +27,6 @@ const Navbar = () => {
       setOpen(true)
     }
     setOpen(false)
-
   }
   window.addEventListener("resize", () => {
     setOpen(false);
@@ -76,10 +75,9 @@ const Navbar = () => {
   return (
     <>
 
-
-      {isCalling ? <>
+      {/* {isCalling ? <>
         <span className='flex h-13 bg-gray-50 shadow w-full animate-pulse'></span>
-      </> : <>
+      </> : <> */}
 
         {/* Main Navigation bar in container-fluid */}
         <div className='container-fluid sticky flex items-center top-0 h-13  shadow w-full bg-blue-50'>
@@ -166,9 +164,9 @@ const Navbar = () => {
             </div>
           </> :
           <></>
-        }
+        // }
 
-      </>
+      // </>
 
       }
 
