@@ -74,8 +74,13 @@ const Navbar = () => {
 
   return (
     <>
-
       {/* Main Navigation bar in container-fluid */}
+      {isCalling ? <>
+          <span className='flex w-full h-full bg-gray-400'></span>
+      </> : <>
+
+      </>}
+
       <div className='container-fluid sticky flex items-center top-0 h-13  shadow w-full bg-blue-50'>
 
         {/* Items of the container inside the container-fluid */}

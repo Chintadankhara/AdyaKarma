@@ -9,11 +9,11 @@ const Home = () => {
   const toNavigate = useNavigate();
 
   const handleStart = (e) => {
-    e.preventDefault();
+        e.preventDefault();
     if (!isLogin) {
       toNavigate("/signin")
     } else {
-      toNavigate("quickstart");
+      toNavigate("/quickstart");
     }
   }
 

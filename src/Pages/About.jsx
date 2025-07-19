@@ -4,6 +4,7 @@ const About = () => {
 
   return (
     <>
+    
       <section className='container text-center mt-2  bg-white  shadow-md shadow-gray-500 p-2'>
 
         <h1 className='font-bold text-3xl'>About Us</h1>
