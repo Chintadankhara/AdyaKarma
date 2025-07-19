@@ -76,7 +76,7 @@ const Navbar = () => {
     <>
       {/* Main Navigation bar in container-fluid */}
       {isCalling ? <>
-          <span className='flex w-full h-full bg-gray-400'></span>
+          <span className='fixed w-full top-0 h-full animate-pulse bg-blue-100'></span>
       </> : <>
 
       </>}
