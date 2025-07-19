@@ -1,7 +1,7 @@
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useTransition, useEffect } from 'react';
-import { Outlet, useNavigate } from 'react-router-dom';
+import {  useNavigate } from 'react-router-dom';
 import { useRef, useState, useContext } from 'react'
 import { NavLink } from 'react-router-dom';
 import { AppContext } from '../assets/AppContext';

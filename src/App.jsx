@@ -13,6 +13,7 @@ import AptitudeGenerator from './Aptitude/AptitudeGenerator'
 import ContextProvider from './assets/AppContext'
 import MailEnter from './Components/MailEnter'
 import EnterOtp from './Components/EnterOtp'
+import { ResetPassword } from './Components/ResetPassword'
 
 
 function App() {
@@ -49,7 +50,8 @@ function App() {
           </Route>
           <Route path='/signin' element={<SignIn />} />
           <Route path='/mailenter' element={<MailEnter />} />
-          <Route path='/enterotp' element={<EnterOtp/>}/>
+          <Route path='/enterotp' element={<EnterOtp />} />
+          <Route path='/resetpassword' element={<ResetPassword />} />
           <Route path='/signup' element={<SignUp />} />
           <Route path="/generate-questions" element={<AptitudeGenerator />} />
         </Routes>

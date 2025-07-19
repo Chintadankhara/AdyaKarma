@@ -6,7 +6,7 @@
 }
 
 body {
-  background-image: linear-gradient(to right, rgb(239, 246, 255), rgb(219, 234, 254));
+  background-image: linear-gradient(to right, rgb(243, 246, 250), rgb(226, 235, 248));
 }
 
 .container,
@@ -125,4 +125,10 @@ body {
 a {
   text-decoration: none;
   color: inherit;
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button{
+  -webkit-appearance: none;
+  margin: 0;
 }

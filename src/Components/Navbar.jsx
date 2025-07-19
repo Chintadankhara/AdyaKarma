@@ -112,7 +112,7 @@ const Navbar = () => {
                 </> :
                 <>
                   {/* Button For open small offcanvas */}
-                  <button onClick={setSmallCanvas} className='menubar cursor-pointer'>
+                  <button onClick={setSmallCanvas} className='menubar  cursor-pointer'>
                     <div className='firstline'></div>
                     <div className='secondline'></div>
                   </button>
@@ -128,7 +128,7 @@ const Navbar = () => {
       {isOpen && isMobile ?
         <>
           {/* Main Offcanvas */}
-          <div className='ml-auto fixed top-0 p-2  scroll-auto h-full w-55 bg-gray-50 shadow '>
+          <div className='ml-auto fixed top-0 p-2  scroll-auto h-full w-55 bg-gray-50 shadow'>
 
             <div className='flex flex-col'>
 

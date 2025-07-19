@@ -3,8 +3,8 @@ import { NavLink, useNavigate } from "react-router-dom";
 
 const MailEnter = () => {
 
-    const emailRef = useRef();
-    const alertref = useRef();
+    const emailRef = useRef(null);
+    const alertref = useRef(null);
     const toEnterOTP = useNavigate();
     const [isPending, setTransition] = useTransition();
 
@@ -29,7 +29,7 @@ const MailEnter = () => {
 
                 const data = await res.json();
                 if (data.success) {
-                    toEnterOTP('/enterotp');
+                    toEnterOTP('/enterotp',{state:{otp:data.otp, email:data.email}});
                 } else {
                     alertref.current.innerHTML = `<h2>${data.error} !</h2>`
                 }
@@ -44,11 +44,10 @@ const MailEnter = () => {
         <>
             <section className="container text-center mt-2">
 
-                <NavLink style={{ color: "blue" }} className={'mt-2'} to={'/signin'}>/ Sign-In</NavLink>
-
+                
                 <div className="flex flex-col w-75 mt-2  text-center rounded m-auto border pl-3 pr-3 pt-5 pb-5">
                     <h1 className='text-2xl font-bold'>Enter your mail</h1>
-                    <p>Enter your mail, we'll send youc otp to reset you password</p>
+                    <p>we'll send you a otp to your registered email address</p>
 
                     <label htmlFor="" className='mt-5 text-center'>
                         <input type={'mail'} ref={emailRef} className='pl-3 outline-0 border mt-2 h-10 w-full rounded' placeholder='XYZ@gmail.com' />
@@ -59,7 +58,7 @@ const MailEnter = () => {
 
                     <button style={{ color: "white" }}
                         onClick={handlemail}
-                        className='cursor-pointer bg-gradient-to-r from-blue-500 to-blue-700 h-10 mt-4 rounded shadow  hover:from-blue-600 hover:to-blue-800 font-semibold text-lg transition-all duration-200 text-center'>{isPending ? <><div className='animate-pulse h-10 bg-blue-300 rounded w-full'></div></> : "Sign-In"} Send OTP</button>
+                        className='cursor-pointer bg-gradient-to-r from-blue-500 to-blue-700 h-10 mt-4 rounded shadow  hover:from-blue-600 hover:to-blue-800 font-semibold text-lg transition-all duration-200 text-center'>{isPending ? <><div className='animate-pulse h-10 bg-blue-300 rounded w-full'></div></> : "Send OTP"}</button>
                 </div>
 
             </section>
