@@ -2,6 +2,8 @@ import { useState, useEffect, useTransition, useContext } from 'react'
 import { NavLink, useNavigate } from 'react-router-dom'
 import { useMediaQuery } from 'react-responsive'
 import { AppContext } from '../assets/AppContext';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { FaEye } from 'react-icons/fa';
 
 const Navbar = () => {
 
@@ -76,7 +78,13 @@ const Navbar = () => {
     <>
       {/* Main Navigation bar in container-fluid */}
       {isCalling ? <>
-          <span className='fixed w-full top-0 h-full animate-pulse bg-blue-100'></span>
+        <span className='fixed flex w-full h-screen bg-blue-100 justify-center items-center'>
+          <span className='animate-pulse'>
+            <span className='inline-block w-5 h-5 rounded-full bg-black m-1'></span>
+            <span className='inline-block w-5 h-5 rounded-full bg-black m-1'></span>
+            <span className='inline-block w-5 h-5 rounded-full bg-black m-1'></span>
+          </span>
+        </span>
       </> : <>
 
       </>}
