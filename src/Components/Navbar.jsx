@@ -66,7 +66,6 @@ const Navbar = () => {
 
   // Sign out handler
   const handleSignOut = () => {
-    // Clear the auth cookie (set expiry in the past)
     document.cookie = "auth=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
     setTokenValid(false);
     setOpen(false); // Close mobile menu if open
@@ -76,7 +75,8 @@ const Navbar = () => {
 
   return (
     <>
-      {/* Main Navigation bar in container-fluid */}
+
+
       {isCalling ? <>
         <span className='fixed flex w-full h-screen bg-blue-100 justify-center items-center'>
           <span className='animate-pulse'>
@@ -89,6 +89,7 @@ const Navbar = () => {
 
       </>}
 
+      {/* Main Navigation bar in container-fluid */}
       <div className='container-fluid sticky flex items-center top-0 h-13  shadow w-full bg-blue-50'>
 
         {/* Items of the container inside the container-fluid */}
