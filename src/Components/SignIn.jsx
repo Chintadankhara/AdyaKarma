@@ -92,7 +92,7 @@ const SignIn = () => {
 
           <label htmlFor="" className='mt-5'>
             <input ref={passwordRef} type={showPassword ? "text" : "password"} className='pl-3 outline-0 border mt-2 h-10 w-full rounded' placeholder='Password' />
-            <div><FontAwesomeIcon className='relative left-29 bottom-8 cursor-pointer' onClick={handleReveal} icon={showPassword ? faEyeSlash : faEye} /></div>
+            <div><FontAwesomeIcon className='relative left-29 bottom-8 cursor-pointer' onClick={handleReveal} icon={showPassword ? faEyeSlash : faEye}/></div>
           </label>
 
           <label htmlFor="">
